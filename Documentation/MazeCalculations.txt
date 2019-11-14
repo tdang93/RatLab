@@ -1,0 +1,8 @@
+Cell = 18cm x 18cm
+Tile = 3 x 3 Cells
+Maze = 16 x 16 Tiles
+
+1 unit = 1 Cell length = 18cm
+1 Cell = 1 unit x 1 unit
+1 Tile = 3 units x 3 units
+Maze = 48 units x 48 units
