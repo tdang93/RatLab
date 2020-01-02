@@ -1,8 +1,9 @@
 Cell = 18cm x 18cm
-Tile = 3 x 3 Cells
 Maze = 16 x 16 Tiles
 
 1 unit = 1 Cell length = 18cm
 1 Cell = 1 unit x 1 unit
-1 Tile = 3 units x 3 units
-Maze = 48 units x 48 units
+Maze = 16 units x 16 units
+
+( From: http://site.ieee.org/r1/files/2013/03/2013-Region-1-Micromouse-Competition-Rules.pdf )
+The maze is composed of multiples of an 18 cm x 18 cm unit square. The maze comprises 16 x 16 unit squares. The walls of the maze are 5 cm high and 1.2 cm thick (assume 5% tolerance for mazes). The outside wall encloses the entire maze. 

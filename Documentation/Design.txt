@@ -1,0 +1,20 @@
+Constraints:
+> The Origin is always (0,0) in a corner, and this Origin will always be the Start area in the maze.
+> The Finish will always be in the center of the maze, consisting of the 4 centermost cells, in a square.
+> There must always be at least 1 connected path from the Start to the Finish in the Maze.
+
+Procedure:
+> The Foundation will be pregenerated before the main elements of the Maze. This will consist of the Floor, Tiles, and Cells, and ONLY EXTERIOR Walls. These Exterior Walls are those which are on the furthest outer edges of the Maze, creating its boundaries.
+> Maze generation will first create the Start and Finish (in either order, as long as both are generated first, before other Maze elements, excluding the Foundation.
+> After the Start and Finish areas are created, the Maze will generate a Solution path from the Start to the Finish, creating Walls between Cells.
+> Cell Walls are shared between adjacent Cells, and are referenced by both in code.
+> The Solution path must not be completely isolated from the rest of the maze. This means that at least one Cell along the Solution path must have at least 1 fewer Walls than necessary, to allow for connection to another path in the Maze.
+> At least 70% of the maze by default must be connected to the Solution path, but this amount can be adjusted. This means that by default, completely isolated areas of the Maze may be generated, which cannot be reached through any form of legitimate traversal.
+
+1) Choose the 4 centermost Cells and designate them as the Finish.
+2) Choose the Start Cell. Add its Exterior Walls.
+3) Choose one of two remaining CellOrWall references from the Start Cell, which are NULL. Use the chosen one to connect to a new Cell.
+4) From the newly connected Cell, choose a CellOrWall reference that is NULL, and connect it to another Cell.
+5) Repeat step 4 until the Start area is connected to the Finish area, and move onto step 6. If there is no NULL CellOrWall reference left to connect, then quit the current loop which repeats step 4, but keep the current path and move onto step 5A.
+5A) Repeat steps 4 to 5.
+6) Ensure that every Post, except the centermost post inside the Finish Cells, is connected to at least one Wall. Add any Walls necessary to satisfy this condition.

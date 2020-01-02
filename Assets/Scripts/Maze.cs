@@ -7,9 +7,9 @@ public class Maze : MonoBehaviour {
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private GameObject postPrefab;
 
-    //[SerializeField] private Cell[][] cellArray;
+    [SerializeField] private Cell[,] cellArray;
     ///*
-    public class CellOrWall {
+    private class CellOrWall {
         public CellOrWall() {
 
         }
@@ -17,7 +17,7 @@ public class Maze : MonoBehaviour {
     //*/
 
     private class Cell : CellOrWall {
-        private GameObject cell;
+        public GameObject cell;
         /*
         public CellOrWall north;
         public CellOrWall south;
@@ -54,33 +54,23 @@ public class Maze : MonoBehaviour {
     }
     */
     private void Start() {
+        cellArray = new Cell[16, 16];
         GenerateMaze();
     }
 
     private void GenerateMaze() {
-        for(int x = 0; x < 16; x++) {
+        for (int x = 0; x < 16; x++) {
             for(int z = 0; z < 16; z++) {
                 Vector3 position = this.gameObject.transform.position + new Vector3(x, 0, z);
-                GameObject tile = GenerateTile(x, z);
-                tile.name = "Tile (" + x + ", " + z + ")";
-                tile.transform.SetParent(this.gameObject.transform);
+                Cell tempCell = new Cell(cellPrefab, position, this.transform, "Cell (" + x + ", " + z + ")");
+                cellArray[x, z] = tempCell;
+
+                if((x == 7 || x == 8) && (z == 7 || z == 8)) { tempCell.cell.GetComponent<Renderer>().material.color = Color.red; }
             }
         }
+        cellArray[0, 0].cell.GetComponent<Renderer>().material.color = Color.green;
     }
 
-    private GameObject GenerateTile(int x, int z) {
-        GameObject tile = new GameObject();
-        for(int a = 0; a < 3; a++) {
-            for(int c = 0; c < 3; c++) {
-                Vector3 position = this.gameObject.transform.position + new Vector3(x + a, 0, z + c);
-                Cell tempCell = new Cell(cellPrefab, position, tile.transform, "Cell (" + a + ", " + c + ")");
-                //Transform T = tile.transform;
-                //Cell tempCell = new Cell(cellPrefab, T.position, T, "");
-                //cellArray[x + a][z + c] = tempCell;
-            }
-        }
-        return tile;
-    }
     /*
     private GameObject GeneratePosts() { // TODO
         GameObject post = GameObject.Instantiate(postPrefab);
